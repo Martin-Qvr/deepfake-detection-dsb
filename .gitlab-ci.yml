@@ -1,0 +1,16 @@
+image: python:3.8
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+before_script:
+  - pip install --upgrade pip
+  - pip install pytest
+  - pip install -r requirements.txt
+test:
+  script:
+    - cd code
+    - python -m pytest --disable-warnings
+
